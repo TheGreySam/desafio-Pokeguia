@@ -1,18 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img class="logo" src="./assets/pokemon-logo.png">
+    <h1>PokeGuía</h1>
+
+    <div>
+      <label for="">Nombre:</label>
+      <input type="text" v-model="nombreDelPokemon" />
+      <button>Buscar</button>
+    </div>
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data: () => ({
+    nombreDelPokemon: "",
+  }),
+  methods: {
+    clickBotonBuscar() {
+      console.log("nombre del pokemon => ", this.nombreDelPokemon);
+    },
+  },
 }
 </script>
 
