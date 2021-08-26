@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img class="logo" src="./assets/pokemon-logo.png">
+    <img class="logo" src="/assets/pokemon-logo.jpg">
     <h1>PokeGuía</h1>
 
     <div>
@@ -19,12 +19,31 @@ export default {
   name: 'App',
   data: () => ({
     nombreDelPokemon: "",
+    dataPokemon: [],
   }),
-  methods: {
-    clickBotonBuscar() {
-      console.log("nombre del pokemon => ", this.nombreDelPokemon);
-    },
-  },
+//  created() {
+//    this.
+//  }
+//  methods: {
+//    clickBotonBuscar() {
+//      console.log("nombre del pokemon => ", this.nombreDelPokemon);
+//    },
+//    infoPikachu() {
+//      fetch("https://pokeapi.co/api/v2/pokemon/nombre_pokemon")
+//      .then((response) => {
+//        return response.json();
+//      })
+//      .then((json) => {
+//
+//      })
+//    },
+//    infoPokemon() {
+//      fetch(https/$this.clickBotonBuscar) {
+//        .then((response))
+//      }
+//    }
+//
+//  },
 }
 </script>
 
