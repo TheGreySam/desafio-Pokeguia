@@ -1,26 +1,47 @@
 <template>
   <div id="app">
-    <img class="logo" src="/assets/pokemon-logo.jpg">
+    <img id="logo" src="./assets/International_Pokémon_logo.svg.png">
+    
     <h1>PokeGuía</h1>
 
     <div>
+      
+    </div>
+    <form action="">
       <label for="">Nombre:</label>
       <input type="text" v-model="nombreDelPokemon" />
       <button>Buscar</button>
-    </div>
+      <br>
+      <h1>Movimientos</h1>
+      {{movimientos}}
+      <br>
+      <h1>Habilidades</h1>
+      {{habilidades}}
+    </form>
     
   </div>
 </template>
 
 <script>
-
+//
 
 export default {
   name: 'App',
   data: () => ({
     nombreDelPokemon: "",
-    dataPokemon: [],
+    dataPokemon: {
+      movimientos: null,
+      habilidades: null,
+    },
   }),
+
+  methods: {
+    obtenerDataPokemon() {
+      console.log(this.dataPokemon);
+
+      this.nombreDelPokemon = ``
+    }
+  }
 //  created() {
 //    this.
 //  }
@@ -55,5 +76,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#logo {
+  height: 150pt;
 }
 </style>
