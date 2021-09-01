@@ -7,65 +7,72 @@
     <div>
       
     </div>
-    <form action="">
+    <form @submit.prevent="nombreDelPokemon">
       <label for="">Nombre:</label>
       <input type="text" v-model="nombreDelPokemon" />
-      <button>Buscar</button>
+      <button @click="clickBuscador()">Buscar</button>
       <br>
+      <img :src="imgPokemon" alt="imagen">
+      {{dataPokemon.id}}
+      
+      {{pokemonApi}}
       <h1>Movimientos</h1>
-      {{movimientos}}
+      
+      {{dataPokemon.moves}}
+      {{dataPokemon.movimientos}}
       <br>
       <h1>Habilidades</h1>
-      {{habilidades}}
+      {{dataPokemon.abilities}}
     </form>
     
   </div>
 </template>
 
+
 <script>
-//
 
 export default {
   name: 'App',
   data: () => ({
-    nombreDelPokemon: "",
+    nombreDelPokemon: "pikachu",
     dataPokemon: {
-      movimientos: null,
-      habilidades: null,
+      id: null,
+      sprites: null,
+      moves: null,
+      abilities: null,
+            
+//      imgPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+//      movimientos: null,
+//      habilidades: null,
     },
-  }),
-
-  methods: {
-    obtenerDataPokemon() {
-      console.log(this.dataPokemon);
-
-      this.nombreDelPokemon = ``
+    computed: {
+      imgPokemon() {
+        this.imgPokemon = `http://pokeapi.co/api/v1/pokemon/${this.dataPokemon.id}.png`
+      }
     }
-  }
-//  created() {
-//    this.
-//  }
-//  methods: {
-//    clickBotonBuscar() {
-//      console.log("nombre del pokemon => ", this.nombreDelPokemon);
-//    },
-//    infoPikachu() {
-//      fetch("https://pokeapi.co/api/v2/pokemon/nombre_pokemon")
-//      .then((response) => {
-//        return response.json();
-//      })
-//      .then((json) => {
-//
-//      })
-//    },
-//    infoPokemon() {
-//      fetch(https/$this.clickBotonBuscar) {
-//        .then((response))
-//      }
+    
+  }),
+  methods: {
+    clickBuscador() {
+      this.pokemonApi()
+      console.log(this.dataPokemon);
+//      this.dataPokemon.id = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/ + ${this.dataPokemon.id} + ".png"`;
+    },
+    pokemonApi(){
+      fetch(`https://pokeapi.co/api/v2/pokemon/${this.nombreDelPokemon}`)
+      .then((response) => response.json())
+      .then((json) => (this.dataPokemon = json))
+    },
+//    imgPokemon(){
+//      return${this.dataPokemon.id}
 //    }
-//
-//  },
+  },
+  created() {
+  this.pokemonApi()
 }
+};
+
+
 </script>
 
 <style>
