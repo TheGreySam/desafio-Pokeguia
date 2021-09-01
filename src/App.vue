@@ -12,14 +12,15 @@
       <input type="text" v-model="nombreDelPokemon" />
       <button @click="clickBuscador()">Buscar</button>
       <br>
-      <img :src="imgPokemon" alt="imagen">
+      <img :src="dataPokemon.sprites.front_default" alt="imagen">
       {{dataPokemon.id}}
+      {{dataPokemon.sprites.front_default}}
+
       
-      {{pokemonApi}}
+      
       <h1>Movimientos</h1>
       
-      {{dataPokemon.moves}}
-      {{dataPokemon.movimientos}}
+      {{}}
       <br>
       <h1>Habilidades</h1>
       {{dataPokemon.abilities}}
@@ -40,16 +41,14 @@ export default {
       sprites: null,
       moves: null,
       abilities: null,
+      front_default: null,
+      species: null,
             
 //      imgPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
 //      movimientos: null,
 //      habilidades: null,
     },
-    computed: {
-      imgPokemon() {
-        this.imgPokemon = `http://pokeapi.co/api/v1/pokemon/${this.dataPokemon.id}.png`
-      }
-    }
+    
     
   }),
   methods: {
@@ -58,18 +57,14 @@ export default {
       console.log(this.dataPokemon);
 //      this.dataPokemon.id = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/ + ${this.dataPokemon.id} + ".png"`;
     },
+
     pokemonApi(){
       fetch(`https://pokeapi.co/api/v2/pokemon/${this.nombreDelPokemon}`)
       .then((response) => response.json())
       .then((json) => (this.dataPokemon = json))
     },
-//    imgPokemon(){
-//      return${this.dataPokemon.id}
-//    }
   },
-  created() {
-  this.pokemonApi()
-}
+
 };
 
 
