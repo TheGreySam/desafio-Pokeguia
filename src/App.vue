@@ -23,8 +23,12 @@
       
       
       <h1>Movimientos</h1>
-      <div>
+      <li >
         {{movimientos}}
+
+      </li>
+      <div>
+        
 
       </div>
       
@@ -48,18 +52,22 @@ export default {
   data: () => ({
     nombreDelPokemon: "pikachu",
     
-    dataPokemon: {
-      id: "",
-      sprites: "",
-      moves: "",
-      abilities: "",
-      front_default: "",
-      species: "",    
-      other: "",
-      dreamworld: ""       
-    },
-    
-       
+    dataPokemon: ""
+//      id: "",
+//      sprites: "",
+//      moves: {
+//        nombre: ""
+//        },
+//      abilities: "",
+//      front_default: "",
+//      species: "",    
+//      other: "",
+//      dreamworld: "",
+//      move: "",
+//      ability: ""
+   
+//    },
+          
   }),
   
   computed: {
@@ -75,6 +83,8 @@ export default {
     },
     movimientos: function() {
       return this.dataPokemon.moves
+        
+      
     },
     habilidades: function() {
       return this.dataPokemon.abilities
