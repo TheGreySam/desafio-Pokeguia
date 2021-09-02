@@ -12,18 +12,28 @@
       <input type="text" v-model="nombreDelPokemon" />
       <button @click="clickBuscador()">Buscar</button>
       <br>
-      <img :src="dataPokemon.sprites.front_default" alt="imagen">
-      {{dataPokemon.id}}
-      {{dataPokemon.sprites.front_default}}
+      
+      <img :src="imgPokemon" class="img" alt="imagen">
+      
+      
+      <h1>Nombre</h1>
+      
+       {{nombre}}
 
       
       
       <h1>Movimientos</h1>
+      <div>
+        {{movimientos}}
+
+      </div>
       
-      {{}}
       <br>
       <h1>Habilidades</h1>
-      {{dataPokemon.abilities}}
+      <div>
+        {{habilidades}}
+      </div>
+      
     </form>
     
   </div>
@@ -32,30 +42,50 @@
 
 <script>
 
+
 export default {
   name: 'App',
   data: () => ({
     nombreDelPokemon: "pikachu",
+    
     dataPokemon: {
-      id: null,
-      sprites: null,
-      moves: null,
-      abilities: null,
-      front_default: null,
-      species: null,
-            
-//      imgPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
-//      movimientos: null,
-//      habilidades: null,
+      id: "",
+      sprites: "",
+      moves: "",
+      abilities: "",
+      front_default: "",
+      species: "",    
+      other: "",
+      dreamworld: ""       
     },
     
-    
+       
   }),
+  
+  computed: {
+
+    nombre: function() {
+      return  this.dataPokemon.name
+    },
+    imgPokemon: function() {
+//      return this.dataPokemon.sprites.back_default
+//      return this.dataPokemon.id
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.dataPokemon.id}.png`
+
+    },
+    movimientos: function() {
+      return this.dataPokemon.moves
+    },
+    habilidades: function() {
+      return this.dataPokemon.abilities
+    }
+  },
+  
   methods: {
     clickBuscador() {
       this.pokemonApi()
       console.log(this.dataPokemon);
-//      this.dataPokemon.id = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/ + ${this.dataPokemon.id} + ".png"`;
+
     },
 
     pokemonApi(){
@@ -63,7 +93,10 @@ export default {
       .then((response) => response.json())
       .then((json) => (this.dataPokemon = json))
     },
+
+    
   },
+  
 
 };
 
@@ -80,6 +113,9 @@ export default {
   margin-top: 60px;
 }
 #logo {
+  height: 150pt;
+}
+.img {
   height: 150pt;
 }
 </style>
