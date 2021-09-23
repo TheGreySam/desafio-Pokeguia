@@ -23,8 +23,10 @@
       
       
       <h1>Movimientos</h1>
-      <li >
-        {{movimientos}}
+      <li v-for="(movimiento, index) in movimientos" 
+      :key="index"
+      v-text="movimiento.move.name">
+        
 
       </li>
       <div>
@@ -34,9 +36,10 @@
       
       <br>
       <h1>Habilidades</h1>
-      <div>
-        {{habilidades}}
-      </div>
+      <li v-for="(habilidad, index) in habilidades" 
+      :key="index"
+      v-text="habilidad.ability.name">
+      </li>
       
     </form>
     
@@ -52,18 +55,25 @@ export default {
   data: () => ({
     nombreDelPokemon: "pikachu",
     
-    dataPokemon: ""
-//      id: "",
-//      sprites: "",
+    dataPokemon: "",
+      id: "",
+      sprites: {
+        other: {
+          dream_world: {
+            front_default: "",
+          }
+        }
+      },
 //      moves: {
 //        nombre: ""
 //        },
-//      abilities: "",
+      abilities: [],
 //      front_default: "",
 //      species: "",    
 //      other: "",
 //      dreamworld: "",
-//      move: "",
+//      move: [],
+      moves: [],
 //      ability: ""
    
 //    },
@@ -72,22 +82,23 @@ export default {
   
   computed: {
 
-    nombre: function() {
-      return  this.dataPokemon.name
+    nombre() {
+      return  this.dataPokemon.name;
     },
-    imgPokemon: function() {
-//      return this.dataPokemon.sprites.back_default
+    imgPokemon() {
+//      return this.dataPokemon.sprites.other.dream_world.front_default 
+//     return this.dataPokemon.sprites.front_default
 //      return this.dataPokemon.id
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${this.dataPokemon.id}.png`
 
     },
-    movimientos: function() {
-      return this.dataPokemon.moves
+    movimientos() {
+      return this.dataPokemon.moves;
         
       
     },
-    habilidades: function() {
-      return this.dataPokemon.abilities
+    habilidades() {
+      return this.dataPokemon.abilities;
     }
   },
   
@@ -99,6 +110,7 @@ export default {
     },
 
     pokemonApi(){
+      
       fetch(`https://pokeapi.co/api/v2/pokemon/${this.nombreDelPokemon}`)
       .then((response) => response.json())
       .then((json) => (this.dataPokemon = json))
